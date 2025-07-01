@@ -41,10 +41,7 @@ public class BancoForm extends JFrame {
         TRANSFERENCIAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(haySaldo()){
                     transfer();
-                }
-
             }
         });
         SALIRButton.addActionListener(new ActionListener() {
