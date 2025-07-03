@@ -38,7 +38,8 @@ public class LoginForm extends JFrame {
 
         if (u.equals("cliente123") && String.valueOf(pass).equals("clave456")) {
             BancoForm banco = new BancoForm();
-            //dispose();
+            //BancoForm banco = new BancoForm(usuario.getText());
+            dispose();
             //banco.setSize(500, 300);
             //banco.setVisible(true);
             ingreso.addActionListener(e -> verificar());

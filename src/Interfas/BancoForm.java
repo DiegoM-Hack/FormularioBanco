@@ -12,11 +12,17 @@ public class BancoForm extends JFrame {
     private JButton SALIRButton;
     private JLabel saldo;
     private JTextArea historial;
+    private JButton historialButton;
+    private JButton buscarButton;
+    private JTextField codigoField;
     private double saldoInicial = 1000.0;
-
+    private java.util.List<String> historialTransacciones = new java.util.ArrayList<>();
+    private String nombreCliente;
     //double saldoInicial = Double.parseDouble(saldo.getText());
 
     public BancoForm() {
+    //public BancoForm(String nombreCliente) {
+            //this.nombreCliente = nombreCliente;
         setTitle("Test de Compras - Semi-Factura");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,6 +56,29 @@ public class BancoForm extends JFrame {
                 System.exit(0);
             }
         });
+        historialButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Resultado(historialTransacciones);
+
+            }
+        });
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String codigo = codigoField.getText().trim();
+
+                if (codigo.equals("123")) {
+                    JOptionPane.showMessageDialog(BancoForm.this,
+                            "Titular: Diego\nSaldo actual: $" + String.format("%.2f", saldoInicial),
+                            "Cliente encontrado", JOptionPane.INFORMATION_MESSAGE);
+                } else if (codigo.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor ingresa un código.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(BancoForm.this, "No se encontró ningún cliente con ese código.", "No encontrado", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
 
     private void deposito() {
@@ -58,8 +87,10 @@ public class BancoForm extends JFrame {
             if (valor >= 0) {
                 saldoInicial += valor;
                 actualizarSaldo();
-
                 historial.setText(historial.getText() + "\nDepósito: $" + valor);
+                //new Resultado("Depósito", valor);  // ← Muestra la nueva ventana
+                historialTransacciones.add("Depósito: $" + valor);
+
             } else {
                 JOptionPane.showMessageDialog(this, "El valor debe ser mayor o igual a 0", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -67,6 +98,7 @@ public class BancoForm extends JFrame {
             JOptionPane.showMessageDialog(this, "Ingresa un número válido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
 
     private void retiro() {
@@ -77,6 +109,8 @@ public class BancoForm extends JFrame {
                 actualizarSaldo();
 
                 historial.setText(historial.getText() + "\nRetiro: $" + valor);
+                historialTransacciones.add("Retiro: $" + valor);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Saldo insuficiente o valor inválido", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -102,21 +136,27 @@ public class BancoForm extends JFrame {
 
             // Solicita monto a transferir
             String input = JOptionPane.showInputDialog(this, "Monto a transferir:");
-            double monto = Double.parseDouble(input);
+            double valor = Double.parseDouble(input);
+            historialTransacciones.add("Tranfer: $" + valor);
 
-            if (monto < 0) {
+            if (valor < 0) {
                 JOptionPane.showMessageDialog(this, "El monto debe ser mayor o igual a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Cálculo con saldoFinal
-            double saldoFinal = saldoInicial - monto;
+            double saldoFinal = saldoInicial - valor;
+            historialTransacciones.add("Tranfer: $" + valor);
 
             if (saldoFinal >= 0) {
+                saldoInicial = saldoFinal;
                 actualizarSaldo();
 
-                historial.setText(historial.getText() + "\nTransferencia a " + destinatario + ": $" + monto);
-                JOptionPane.showMessageDialog(this, "Transferencia exitosa a " + destinatario + " por $" + monto, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                //historialTransacciones.add("Transferencia a " + destinatario + ": $" + valor);
+                historial.setText(historial.getText()+ "\nTransferencia1 a " + destinatario + ": $" + valor);
+
+                //new Resultado(nombreCliente, valor, saldoInicial);
+                JOptionPane.showMessageDialog(this, "Transferencia exitosa a " + destinatario + " por $" + valor, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Saldo insuficiente para la transferencia", "Error", JOptionPane.ERROR_MESSAGE);
             }
