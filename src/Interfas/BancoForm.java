@@ -99,6 +99,8 @@ public class BancoForm extends JFrame {
                 }
             }
         });
+        buscarButton.setBackground(Color.GRAY);         // Color de fondo
+        buscarButton.setForeground(Color.WHITE);
     }
 
     private void deposito() {
