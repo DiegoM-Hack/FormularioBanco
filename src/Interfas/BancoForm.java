@@ -1,6 +1,7 @@
 package Interfas;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,12 +24,16 @@ public class BancoForm extends JFrame {
     public BancoForm() {
     //public BancoForm(String nombreCliente) {
             //this.nombreCliente = nombreCliente;
-        setTitle("Test de Compras - Semi-Factura");
+        setTitle("Formulario");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(principal2);
         setLocationRelativeTo(null);
         setVisible(true);
+        setIconImage(new ImageIcon("src/bank-icon.jpg").getImage());
+
+        principal2.setBackground(new Color(160, 232, 150 )); // o cualquier otro color
+        setContentPane(principal2);
 
         saldo.setText(String.valueOf(saldoInicial));
 
@@ -99,8 +104,6 @@ public class BancoForm extends JFrame {
         }
     }
 
-
-
     private void retiro() {
         try {
             double valor = Double.parseDouble(JOptionPane.showInputDialog(this, "Valor a retirar:"));
@@ -118,7 +121,6 @@ public class BancoForm extends JFrame {
             JOptionPane.showMessageDialog(this, "Ingresa un número válido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 
     private boolean haySaldo() {
         return Double.parseDouble(saldo.getText()) >= 0;

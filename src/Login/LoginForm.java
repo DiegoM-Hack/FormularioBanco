@@ -3,6 +3,7 @@ package Login;
 import Interfas.BancoForm;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,19 +14,23 @@ public class LoginForm extends JFrame {
     private JPasswordField clave;
     private JButton ingreso;
     public LoginForm() {
-        setTitle("Test de Compras - Semi-Factura");
+        setTitle("-----Login Banco-----");
         setSize(500, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(principal);
         setLocationRelativeTo(null);
         setVisible(true);
 
+        setIconImage(new ImageIcon("src/bank-icon.jpg").getImage());
         ingreso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 verificar();
             }
         });
+
+        ingreso.setBackground(Color.GRAY);         // Color de fondo
+        ingreso.setForeground(Color.WHITE);
     }
 
     private void verificar() {
@@ -48,6 +53,8 @@ public class LoginForm extends JFrame {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new LoginForm());

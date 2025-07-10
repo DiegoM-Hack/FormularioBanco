@@ -1,6 +1,7 @@
 package Interfas;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Resultado extends JFrame {
     private JPanel principal;
@@ -12,6 +13,10 @@ public class Resultado extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon("src/bank-icon.jpg").getImage());
+
+        principal.setBackground(new Color(255, 220, 200)); // o cualquier otro color
+        setContentPane(principal);
 
         StringBuilder texto = new StringBuilder();
         for (String linea : historial) {
