@@ -43,24 +43,36 @@ public class BancoForm extends JFrame {
                 deposito();
             }
         });
+        DEPOSITOButton.setBackground(Color.GRAY);         // Color de fondo
+        DEPOSITOButton.setForeground(Color.WHITE);
+
         RETIROButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 retiro();
             }
         });
+        RETIROButton.setBackground(Color.GRAY);         // Color de fondo
+        RETIROButton.setForeground(Color.WHITE);
+
         TRANSFERENCIAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                     transfer();
             }
         });
+        TRANSFERENCIAButton.setBackground(Color.GRAY);         // Color de fondo
+        TRANSFERENCIAButton.setForeground(Color.WHITE);
+
         SALIRButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
+        SALIRButton.setBackground(Color.RED);         // Color de fondo
+        SALIRButton.setForeground(Color.WHITE);
+
         historialButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +80,9 @@ public class BancoForm extends JFrame {
 
             }
         });
+        historialButton.setBackground(Color.GRAY);         // Color de fondo
+        historialButton.setForeground(Color.WHITE);
+
         buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
