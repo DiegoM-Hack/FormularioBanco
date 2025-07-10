@@ -32,7 +32,7 @@ public class BancoForm extends JFrame {
         setVisible(true);
         setIconImage(new ImageIcon("src/bank-icon.jpg").getImage());
 
-        principal2.setBackground(new Color(160, 232, 150 )); // o cualquier otro color
+        principal2.setBackground(new Color(160, 232, 150 ));
         setContentPane(principal2);
 
         saldo.setText(String.valueOf(saldoInicial));
@@ -163,14 +163,14 @@ public class BancoForm extends JFrame {
 
             // Cálculo con saldoFinal
             double saldoFinal = saldoInicial - valor;
-            historialTransacciones.add("Tranfer: $" + valor);
+            historialTransacciones.add("Transferencia: $" + valor);
 
             if (saldoFinal >= 0) {
                 saldoInicial = saldoFinal;
                 actualizarSaldo();
 
                 //historialTransacciones.add("Transferencia a " + destinatario + ": $" + valor);
-                historial.setText(historial.getText()+ "\nTransferencia1 a " + destinatario + ": $" + valor);
+                historial.setText(historial.getText()+ "\nTransferencia a " + destinatario + ": $" + valor);
 
                 //new Resultado(nombreCliente, valor, saldoInicial);
                 JOptionPane.showMessageDialog(this, "Transferencia exitosa a " + destinatario + " por $" + valor, "Éxito", JOptionPane.INFORMATION_MESSAGE);
